@@ -1,4 +1,5 @@
-﻿using System.Web;
+﻿using System.Collections.Specialized;
+using System.Web;
 
 namespace UnityProofOfConcept.App
 {
@@ -7,5 +8,6 @@ namespace UnityProofOfConcept.App
         HttpRequestBase Request { get; }
         HttpResponseBase Response { get; }
         HttpContextBase Context { get; }
+        NameValueCollection QueryString { get; }
     }
 }

@@ -5,7 +5,7 @@
 
         public static IDataAccess Create(IHttpContextBaseWrapper context)
         {
-            return int.TryParse(context.Request.QueryString["n"], out var s) ? new DataAccess(s) : new DataAccess(999);
+            return int.TryParse(context.QueryString["n"], out var s) ? new DataAccess(s) : new DataAccess(999);
         }
 
         public DataAccess() : this(1)

@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
-using System.Text;
-using System.Web.Http;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using UnityProofOfConcept;
+using Moq;
 using UnityProofOfConcept.App;
 using UnityProofOfConcept.Controllers;
 
@@ -14,27 +10,29 @@ namespace UnityProofOfConcept.Tests.Controllers
     [TestClass]
     public class ValuesControllerTest
     {
+        private static ValuesController GetValuesController()
+        {
+            // Arrange
+            var mock = new Mock<IValuesService>();
+            mock.Setup(s => s.GetValues()).Returns(new List<string> { "value1", "value2" });
+            ValuesController controller = new ValuesController(mock.Object);
+            return controller;
+        }
+
         [TestMethod]
         public void Get()
         {
+            // Arrange
             var controller = GetValuesController();
 
             // Act
-            IEnumerable<string> result = controller.Get();
+            var result = controller.Get().ToList();
 
             // Assert
             Assert.IsNotNull(result);
-            Assert.AreEqual(2, result.Count());
+            Assert.AreEqual(2, result.Count);
             Assert.AreEqual("value1", result.ElementAt(0));
             Assert.AreEqual("value2", result.ElementAt(1));
-        }
-
-        private static ValuesController GetValuesController()
-        {
-// Arrange
-            var da = new DataAccess();
-            ValuesController controller = new ValuesController( new ValuesService(new ValuesRepository(da)));
-            return controller;
         }
 
         [TestMethod]
