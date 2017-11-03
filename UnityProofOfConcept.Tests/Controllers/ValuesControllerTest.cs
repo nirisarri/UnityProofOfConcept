@@ -6,6 +6,7 @@ using System.Text;
 using System.Web.Http;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using UnityProofOfConcept;
+using UnityProofOfConcept.App;
 using UnityProofOfConcept.Controllers;
 
 namespace UnityProofOfConcept.Tests.Controllers
@@ -16,8 +17,7 @@ namespace UnityProofOfConcept.Tests.Controllers
         [TestMethod]
         public void Get()
         {
-            // Arrange
-            ValuesController controller = new ValuesController();
+            var controller = GetValuesController();
 
             // Act
             IEnumerable<string> result = controller.Get();
@@ -29,11 +29,19 @@ namespace UnityProofOfConcept.Tests.Controllers
             Assert.AreEqual("value2", result.ElementAt(1));
         }
 
+        private static ValuesController GetValuesController()
+        {
+// Arrange
+            var da = new DataAccess();
+            ValuesController controller = new ValuesController( new ValuesService(new ValuesRepository(da)));
+            return controller;
+        }
+
         [TestMethod]
         public void GetById()
         {
             // Arrange
-            ValuesController controller = new ValuesController();
+            ValuesController controller = GetValuesController();
 
             // Act
             string result = controller.Get(5);
@@ -46,7 +54,7 @@ namespace UnityProofOfConcept.Tests.Controllers
         public void Post()
         {
             // Arrange
-            ValuesController controller = new ValuesController();
+            ValuesController controller = GetValuesController();
 
             // Act
             controller.Post("value");
@@ -58,7 +66,7 @@ namespace UnityProofOfConcept.Tests.Controllers
         public void Put()
         {
             // Arrange
-            ValuesController controller = new ValuesController();
+            ValuesController controller = GetValuesController();
 
             // Act
             controller.Put(5, "value");
@@ -70,7 +78,7 @@ namespace UnityProofOfConcept.Tests.Controllers
         public void Delete()
         {
             // Arrange
-            ValuesController controller = new ValuesController();
+            ValuesController controller = GetValuesController();
 
             // Act
             controller.Delete(5);
