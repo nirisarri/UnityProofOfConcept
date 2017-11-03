@@ -16,7 +16,7 @@ namespace UnityProofOfConcept
                     WithMappings.FromMatchingInterface,
                     WithName.Default,
                     WithLifetime.Transient)
-                .RegisterType<IDataAccess, DataAccess>(null, new PerResolveLifetimeManager(),
+                .RegisterType<IDataAccess, DataAccess>(null, new ContainerControlledLifetimeManager(),
                     new InjectionFactory(c =>
                         {
                             Debug.WriteLine("Calling the InjectionFactory");
