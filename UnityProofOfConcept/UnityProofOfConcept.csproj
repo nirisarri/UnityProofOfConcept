@@ -176,8 +176,12 @@
     <Compile Include="App\HttpContextBaseWrapper.cs" />
     <Compile Include="App\IDataAccess.cs" />
     <Compile Include="App\IHttpContextBaseWrapper.cs" />
+    <Compile Include="App\IStampRepository.cs" />
+    <Compile Include="App\IStampService.cs" />
     <Compile Include="App\IValuesRepository.cs" />
     <Compile Include="App\IValuesService.cs" />
+    <Compile Include="App\StampRepository.cs" />
+    <Compile Include="App\StampService.cs" />
     <Compile Include="App\ValuesRepository.cs" />
     <Compile Include="App\ValuesService.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -215,6 +219,7 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MultiController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
