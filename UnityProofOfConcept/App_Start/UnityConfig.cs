@@ -3,7 +3,7 @@ using Microsoft.Practices.Unity;
 using System.Web.Http;
 using Unity.WebApi;
 using UnityProofOfConcept.App;
-
+using System.Diagnostics;
 namespace UnityProofOfConcept
 {
     public static class UnityConfig
@@ -11,12 +11,19 @@ namespace UnityProofOfConcept
         public static void RegisterComponents(IUnityContainer container)
         {
             container
-                .RegisterType<IValuesService, ValuesService>()
-                .RegisterType<IValuesRepository, ValuesRepository>()
-                .RegisterType<IDataAccess, DataAccess>(
-                    new InjectionFactory(c => 
-                        DataAccess.Create(c.Resolve<IHttpContextBaseWrapper>())))
-                .RegisterType<IHttpContextBaseWrapper, HttpContextBaseWrapper>();
+                .RegisterTypes(
+                    AllClasses.FromLoadedAssemblies(),
+                    WithMappings.FromMatchingInterface,
+                    WithName.Default,
+                    WithLifetime.Transient)
+                .RegisterType<IDataAccess, DataAccess>(null, new PerResolveLifetimeManager(),
+                    new InjectionFactory(c =>
+                        {
+                            Debug.WriteLine("Calling the InjectionFactory");
+                            return DataAccess.Create(c.Resolve<IHttpContextBaseWrapper>());
+                    }
+                    ))
+                .RegisterType<IHttpContextBaseWrapper, HttpContextBaseWrapper>(new ContainerControlledLifetimeManager());
             // register all your components with the container here
             // it is NOT necessary to register your controllers
 
