@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityProofOfConcept.Core.Data;
+using UnityProofOfConcept.Core.DTO;
 using UnityProofOfConcept.Core.Services;
 
 namespace UnityProofOfConcept.Services
@@ -12,7 +13,8 @@ namespace UnityProofOfConcept.Services
         {
             _repos = repos;
         }
-        public IEnumerable<string> GetValues()
+
+        public IEnumerable<ValueDTO> GetValues()
         {
             return _repos.GetAll();
         }

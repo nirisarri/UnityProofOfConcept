@@ -1,22 +1,29 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Web.Http;
+using System.Web.Http.Results;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using UnityProofOfConcept.Core.DTO;
 using UnityProofOfConcept.Core.Services;
 using UnityProofOfConcept.Web.Controllers;
 
 namespace UnityProofOfConcept.Web.Tests.Controllers
 {
     [TestClass]
-    public class ValuesControllerTest
+    public class ValuesControllerTest 
     {
         private static ValuesController GetValuesController()
         {
             // Arrange
             var mock = new Mock<IValuesService>();
-            mock.Setup(s => s.GetValues()).Returns(new List<string> { "value1", "value2" });
-            ValuesController controller = new ValuesController(mock.Object);
+            mock.Setup(s => s.GetValues()).Returns(new List<ValueDTO>
+            {
+                new ValueDTO("value1"),
+                new ValueDTO("value2")
+            });
+            ValuesController controller = new ValuesController(mock.Object, CommonMocks.SecurityMock.Object);
             return controller;
         }
 
@@ -27,13 +34,13 @@ namespace UnityProofOfConcept.Web.Tests.Controllers
             var controller = GetValuesController();
 
             // Act
-            var result = controller.Get().ToList();
-
+            var result = controller.Get() as OkNegotiatedContentResult<IEnumerable<string>>;
             // Assert
             Assert.IsNotNull(result);
-            Assert.AreEqual(2, result.Count);
-            Assert.AreEqual("value1", result.ElementAt(0));
-            Assert.AreEqual("value2", result.ElementAt(1));
+            var r = result.Content.ToList();
+            Assert.AreEqual(2, r.Count);
+            Assert.AreEqual("value1", r.ElementAt(0));
+            Assert.AreEqual("value2", r.ElementAt(1));
         }
 
         [TestMethod]

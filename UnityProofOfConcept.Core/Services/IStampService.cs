@@ -1,9 +1,10 @@
 ﻿using System;
+using UnityProofOfConcept.Core.DTO;
 
 namespace UnityProofOfConcept.Core.Services
 {
     public interface IStampService
     {
-        string GetStamp(DateTime time);
+        StampDTO GetStamp(DateTime time);
     }
 }

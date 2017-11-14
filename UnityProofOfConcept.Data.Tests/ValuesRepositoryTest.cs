@@ -15,7 +15,7 @@ namespace UnityProofOfConcept.Data.Tests
         {
             var dataAccessMock = new Mock<IDataAccess>();
             var sut = new ValuesRepository(dataAccessMock.Object);
-            List<string> result = sut.GetAll().ToList();
+            List<string> result = sut.GetAll().Select(x => x.Name).ToList();
             result.Should().HaveCount(8);
             result[5].Should().NotBeNullOrWhiteSpace();
             result[6].Should().BeNullOrWhiteSpace();

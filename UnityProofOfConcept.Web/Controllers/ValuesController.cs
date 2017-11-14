@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Web.Http;
 using UnityProofOfConcept.Core.Services;
 
@@ -9,9 +10,9 @@ namespace UnityProofOfConcept.Web.Controllers
         private readonly IValuesService _service;
 
         // GET api/values
-        public IEnumerable<string> Get()
+        public IHttpActionResult Get()
         {
-            return _service.GetValues();
+            return Ok(_service.GetValues().Select(x=>x.Name));
         }
 
         // GET api/values/5
@@ -35,7 +36,7 @@ namespace UnityProofOfConcept.Web.Controllers
         {
         }
 
-        public ValuesController(IValuesService service)
+        public ValuesController(IValuesService service, ISecurityService securityService) : base(securityService)
         {
             _service = service;
         }

@@ -43,14 +43,17 @@
   <ItemGroup>
     <Compile Include="Data\IStampRepository.cs" />
     <Compile Include="Data\IValuesRepository.cs" />
+    <Compile Include="DTO\ValueDTO.cs" />
+    <Compile Include="Services\ISecurityService.cs" />
     <Compile Include="Util\IDataAccess.cs" />
     <Compile Include="Util\IHttpContextBaseWrapper.cs" />
     <Compile Include="Services\IStampService.cs" />
     <Compile Include="Services\IValuesService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="DTO\" />
+    <Compile Include="DTO\StampDTO.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

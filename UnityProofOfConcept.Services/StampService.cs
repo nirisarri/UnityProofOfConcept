@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityProofOfConcept.Core.Data;
+using UnityProofOfConcept.Core.DTO;
 using UnityProofOfConcept.Core.Services;
 
 namespace UnityProofOfConcept.Services
@@ -13,7 +14,7 @@ namespace UnityProofOfConcept.Services
             _repos = repos;
         }
 
-        public string GetStamp(DateTime time)
+        public StampDTO GetStamp(DateTime time)
         {
             return _repos.GetAll(time.ToString());
         }

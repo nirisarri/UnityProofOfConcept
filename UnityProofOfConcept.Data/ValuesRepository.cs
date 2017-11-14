@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityProofOfConcept.Core;
 using UnityProofOfConcept.Core.Data;
+using UnityProofOfConcept.Core.DTO;
 using UnityProofOfConcept.Core.Util;
 
 namespace UnityProofOfConcept.Data
@@ -13,13 +14,24 @@ namespace UnityProofOfConcept.Data
         {
             _dataAccess = dataAccess;
         }
-        public IEnumerable<string> GetAll()
+        public IEnumerable<ValueDTO> GetAll()
         {
 
-            var result = new List<string>{"uno", "dos", "tres", "cuatro", "cinco", "seis"};
-            result.Add(_dataAccess.Signature);
-            result.Add(_dataAccess.GetFromAccess(20));
-            return result;
+            var result = new List<string>
+            {
+                "uno",
+                "dos",
+                "tres",
+                "cuatro",
+                "cinco",
+                "seis",
+                _dataAccess.Signature,
+                _dataAccess.GetFromAccess(20)
+            };
+            foreach (var item in result)
+            {
+                yield return new ValueDTO(item);
+            }
         }
     }
 }

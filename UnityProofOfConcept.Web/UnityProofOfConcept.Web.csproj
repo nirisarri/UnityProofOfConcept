@@ -221,7 +221,7 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="CompositionRoot\UnityConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MVC\HomeController.cs" />
     <Compile Include="Controllers\MultiController.cs" />
     <Compile Include="Controllers\SimpleController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
@@ -298,10 +298,6 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\UnityProofOfConcept.Config\UnityProofOfConcept.Config.csproj">
-      <Project>{31EB722C-BEA3-4D78-81CF-47AD0E3A25F7}</Project>
-      <Name>UnityProofOfConcept.Config</Name>
-    </ProjectReference>
     <ProjectReference Include="..\UnityProofOfConcept.Core\UnityProofOfConcept.Core.csproj">
       <Project>{2368784A-D415-438C-891A-30AE6EF1DED1}</Project>
       <Name>UnityProofOfConcept.Core</Name>

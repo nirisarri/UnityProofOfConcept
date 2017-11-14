@@ -22,7 +22,7 @@ namespace UnityProofOfConcept.Data.Tests
             _dataAccessMock.SetupGet(x => x.Signature).Returns("Prefix");
             var sut = new StampRepository(_dataAccessMock.Object);
 
-            var result = sut.GetAll("Suffix");
+            var result = sut.GetAll("Suffix").Name;
 
             result.Should().StartWith("~~~~Prefix");
             result.Should().EndWith("Suffix~~~~");
@@ -34,7 +34,7 @@ namespace UnityProofOfConcept.Data.Tests
             _dataAccessMock.SetupGet(x => x.Signature).Returns("Prefix");
             var sut = new StampRepository(_dataAccessMock.Object);
 
-            var result = sut.GetAll(null);
+            var result = sut.GetAll(null).Name;
 
             result.Should().StartWith("~~~~Prefix");
             result.Should().EndWith("~~~~~~");

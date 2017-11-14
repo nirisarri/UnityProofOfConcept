@@ -1,7 +1,9 @@
-﻿namespace UnityProofOfConcept.Core.Data
+﻿using UnityProofOfConcept.Core.DTO;
+
+namespace UnityProofOfConcept.Core.Data
 {
     public interface IStampRepository
     {
-        string GetAll(string initialStamp);
+        StampDTO GetAll(string initialStamp);
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityProofOfConcept.Core.Data;
+using UnityProofOfConcept.Core.DTO;
 using UnityProofOfConcept.Core.Util;
 
 namespace UnityProofOfConcept.Data
@@ -13,9 +14,9 @@ namespace UnityProofOfConcept.Data
             _dataAccess = dataAccess ?? throw new ArgumentNullException(nameof(dataAccess));
         }
 
-        public string GetAll(string initialStamp)
+        public StampDTO GetAll(string initialStamp)
         {
-            return $"~~~~{_dataAccess.Signature}~~{initialStamp}~~~~";
+            return new StampDTO($"~~~~{_dataAccess.Signature}~~{initialStamp}~~~~");
         }
     }
 }
