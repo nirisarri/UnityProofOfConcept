@@ -4,3 +4,5 @@ In this project I am exploring
  * Injection Factory
  * proper DI
  * Unit Testing structure
+ * Minimal Project dependency
+ * Composition Root
